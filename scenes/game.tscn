@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://t5kcoecyo3wg"]
 
-[ext_resource type="Script" path="res://scenes/scripts/Player.gd" id="1_71mot"]
-[ext_resource type="Script" path="res://scenes/Person.gd" id="2_1468v"]
+[ext_resource type="Script" path="res://scenes/scripts/player/player.gd" id="1_tg8gh"]
+[ext_resource type="Script" path="res://scenes/scripts/player/person.gd" id="2_cv2ip"]
 [ext_resource type="Texture2D" uid="uid://bebdrymcr16hc" path="res://icon.svg" id="2_itglq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s85mk"]
@@ -13,14 +13,14 @@ size = Vector2(127, 127)
 [node name="Game" type="Node2D"]
 
 [node name="Player" type="Node" parent="." node_paths=PackedStringArray("person")]
-script = ExtResource("1_71mot")
+script = ExtResource("1_tg8gh")
 person = NodePath("../Person")
 terminal_velocity = 400.0
 damping = 10.0
 
 [node name="Person" type="CharacterBody2D" parent="."]
 position = Vector2(234, 330)
-script = ExtResource("2_1468v")
+script = ExtResource("2_cv2ip")
 jump_height = 120.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Person"]
