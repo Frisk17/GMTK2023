@@ -6,7 +6,7 @@ var target: CharacterBody2D
 var acceleration: Vector2 = Vector2.ZERO
 
 func _init(_target: CharacterBody2D):
-	self.target = _target
+	target = _target
 
 func state_enter():
 	pass

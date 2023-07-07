@@ -1,22 +1,30 @@
-[gd_scene load_steps=6 format=3 uid="uid://t5kcoecyo3wg"]
+[gd_scene load_steps=7 format=3 uid="uid://t5kcoecyo3wg"]
 
 [ext_resource type="Script" path="res://scenes/scripts/player/player.gd" id="1_tg8gh"]
 [ext_resource type="Script" path="res://scenes/scripts/player/person.gd" id="2_cv2ip"]
-[ext_resource type="Texture2D" uid="uid://bebdrymcr16hc" path="res://icon.svg" id="2_itglq"]
+[ext_resource type="Texture2D" uid="uid://b8tek758s66jo" path="res://sprites/person.png" id="3_j2w8k"]
+[ext_resource type="Texture2D" uid="uid://bypbv73omvnj8" path="res://sprites/line.png" id="4_e5qxl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s85mk"]
 size = Vector2(64, 64)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g1yjk"]
-size = Vector2(127, 127)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hk8ru"]
+size = Vector2(64, 4)
 
 [node name="Game" type="Node2D"]
 
 [node name="Player" type="Node" parent="." node_paths=PackedStringArray("person")]
+process_priority = 1
+process_physics_priority = 1
 script = ExtResource("1_tg8gh")
 person = NodePath("../Person")
-terminal_velocity = 400.0
+terminal_velocity = 500.0
 damping = 10.0
+camera_terminal_velocity = 500.0
+camera_damping = 10.0
+camera_deadzone = 120.0
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
 
 [node name="Person" type="CharacterBody2D" parent="."]
 position = Vector2(234, 330)
@@ -24,8 +32,7 @@ script = ExtResource("2_cv2ip")
 jump_height = 120.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Person"]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_itglq")
+texture = ExtResource("3_j2w8k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Person"]
 shape = SubResource("RectangleShape2D_s85mk")
@@ -34,13 +41,12 @@ shape = SubResource("RectangleShape2D_s85mk")
 wait_time = 0.167
 one_shot = true
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(232, 479)
-scale = Vector2(3.35702, -0.148398)
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(717, 554)
+scale = Vector2(24.2, 1)
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-texture = ExtResource("2_itglq")
+[node name="Sprite2D" type="Sprite2D" parent="Ground"]
+texture = ExtResource("4_e5qxl")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0.5, 0.5)
-shape = SubResource("RectangleShape2D_g1yjk")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+shape = SubResource("RectangleShape2D_hk8ru")
