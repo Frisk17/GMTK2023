@@ -40,6 +40,7 @@ func physics_update(delta: float, terminal_velocity: float, damping: float):
 		animated_sprite.play("running")
 
 func state_enter():
+	super()
 	animated_sprite.modulate = Color("F3D272")
 
 func state_exit():

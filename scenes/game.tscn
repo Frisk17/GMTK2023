@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://t5kcoecyo3wg"]
+[gd_scene load_steps=13 format=3 uid="uid://t5kcoecyo3wg"]
 
 [ext_resource type="PackedScene" uid="uid://dtlkfk2ddt4ew" path="res://scenes/prefabs/player.tscn" id="1_tx6j6"]
 [ext_resource type="PackedScene" uid="uid://cx2e1olc1n7xc" path="res://scenes/prefabs/person.tscn" id="2_cijo2"]
@@ -10,48 +10,17 @@
 [ext_resource type="PackedScene" uid="uid://dw5px4422gx3n" path="res://scenes/prefabs/button.tscn" id="8_p5k65"]
 [ext_resource type="Script" path="res://scenes/scripts/button.gd" id="9_sj07y"]
 [ext_resource type="PackedScene" uid="uid://d0w8ngs5u881r" path="res://scenes/prefabs/platform_character.tscn" id="9_uwbh6"]
+[ext_resource type="FontFile" uid="uid://ypged7ipi8bs" path="res://fonts/dpcomic.ttf" id="11_wtdht"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_it0df"]
+size = Vector2(49, 733)
 
 [node name="Game" type="Node2D"]
 
-[node name="Player" parent="." node_paths=PackedStringArray("person") instance=ExtResource("1_tx6j6")]
-person = NodePath("../Person")
-
-[node name="Person" parent="." groups=["person"] instance=ExtResource("2_cijo2")]
-position = Vector2(94, 450)
-
-[node name="Ground" parent="." instance=ExtResource("3_4tkio")]
-position = Vector2(62, 635)
-scale = Vector2(400, 1)
-
-[node name="Platform" parent="." instance=ExtResource("3_r47tc")]
-position = Vector2(192, 548)
-
-[node name="Platform2" parent="." instance=ExtResource("3_r47tc")]
-position = Vector2(628, 373)
-
-[node name="PlatformWide" parent="." instance=ExtResource("5_vttwv")]
-position = Vector2(345, 468)
-
-[node name="Enemy" parent="." node_paths=PackedStringArray("person", "player") instance=ExtResource("6_s07k2")]
-position = Vector2(-269, 536)
-script = ExtResource("7_c4d2i")
-person = NodePath("../Person")
-player = NodePath("../Player")
-acceleration = 200.0
-terminal_velocity = 400.0
-
-[node name="Button" parent="." node_paths=PackedStringArray("player", "platform") instance=ExtResource("8_p5k65")]
-position = Vector2(387, 440)
-script = ExtResource("9_sj07y")
-player = NodePath("../Player")
-platform = NodePath("../PlatformCharacter")
-
-[node name="PlatformCharacter" parent="." instance=ExtResource("9_uwbh6")]
-position = Vector2(493, 272)
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Label" type="Label" parent="CanvasLayer"]
+[node name="GameOverLabel" type="Label" parent="CanvasLayer"]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -64,7 +33,72 @@ offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("11_wtdht")
+theme_override_font_sizes/font_size = 48
 text = "GAME OVER
 PRESS ANY KEY TO RESTART"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Player" parent="." node_paths=PackedStringArray("person", "game_over_label") instance=ExtResource("1_tx6j6")]
+person = NodePath("../Person")
+game_over_label = NodePath("../CanvasLayer/GameOverLabel")
+
+[node name="Person" parent="." groups=["person"] instance=ExtResource("2_cijo2")]
+position = Vector2(94, 450)
+
+[node name="Enemy" parent="." node_paths=PackedStringArray("person", "player") instance=ExtResource("6_s07k2")]
+position = Vector2(-269, 536)
+script = ExtResource("7_c4d2i")
+person = NodePath("../Person")
+player = NodePath("../Player")
+acceleration = 200.0
+terminal_velocity = 400.0
+
+[node name="Envionment" type="Node" parent="."]
+
+[node name="Ground" parent="Envionment" instance=ExtResource("3_4tkio")]
+position = Vector2(62, 635)
+scale = Vector2(400, 1)
+
+[node name="Platform" parent="Envionment" instance=ExtResource("3_r47tc")]
+position = Vector2(192, 548)
+
+[node name="Platform2" parent="Envionment" instance=ExtResource("3_r47tc")]
+position = Vector2(628, 373)
+
+[node name="Platform3" parent="Envionment" instance=ExtResource("3_r47tc")]
+position = Vector2(1688, 207)
+
+[node name="PlatformWide" parent="Envionment" instance=ExtResource("5_vttwv")]
+position = Vector2(345, 468)
+
+[node name="PlatformWide2" parent="Envionment" instance=ExtResource("5_vttwv")]
+position = Vector2(794, 301)
+
+[node name="PlatformWide3" parent="Envionment" instance=ExtResource("5_vttwv")]
+position = Vector2(1197, 300)
+
+[node name="PlatformCharacter" parent="Envionment" instance=ExtResource("9_uwbh6")]
+position = Vector2(493, 272)
+
+[node name="PlatformCharacter2" parent="Envionment" instance=ExtResource("9_uwbh6")]
+position = Vector2(1558, 145)
+
+[node name="Button" parent="Envionment" node_paths=PackedStringArray("player", "platform") instance=ExtResource("8_p5k65")]
+position = Vector2(387, 440)
+script = ExtResource("9_sj07y")
+player = NodePath("../../Player")
+platform = NodePath("../PlatformCharacter")
+
+[node name="Button2" parent="Envionment" node_paths=PackedStringArray("player", "platform") instance=ExtResource("8_p5k65")]
+position = Vector2(1195, 272)
+script = ExtResource("9_sj07y")
+player = NodePath("../../Player")
+platform = NodePath("../PlatformCharacter2")
+
+[node name="Bounds" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds"]
+position = Vector2(-361.5, 344.5)
+shape = SubResource("RectangleShape2D_it0df")

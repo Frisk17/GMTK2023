@@ -11,6 +11,7 @@ func _init(_target: CharacterBody2D):
 	player = target.get_tree().root.get_node("/root/Game/Player")
 
 func state_enter():
+	super()
 	sprite.modulate = Color("F3D272")
 
 func state_exit():

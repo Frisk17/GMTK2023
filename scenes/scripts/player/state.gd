@@ -9,6 +9,7 @@ func _init(_target: CharacterBody2D):
 	target = _target
 
 func state_enter():
+	print_debug("Making current")
 	var camera: Camera2D = target.get_node("Camera2D")
 	camera.make_current()
 
