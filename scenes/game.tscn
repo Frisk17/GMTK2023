@@ -68,7 +68,7 @@ position = Vector2(192, 548)
 position = Vector2(628, 373)
 
 [node name="Platform3" parent="Envionment" instance=ExtResource("3_r47tc")]
-position = Vector2(1688, 207)
+position = Vector2(1825, 302)
 
 [node name="PlatformWide" parent="Envionment" instance=ExtResource("5_vttwv")]
 position = Vector2(345, 468)
@@ -79,11 +79,23 @@ position = Vector2(794, 301)
 [node name="PlatformWide3" parent="Envionment" instance=ExtResource("5_vttwv")]
 position = Vector2(1197, 300)
 
+[node name="PlatformWide4" parent="Envionment" instance=ExtResource("5_vttwv")]
+position = Vector2(2033, 234)
+
+[node name="PlatformWide5" parent="Envionment" instance=ExtResource("5_vttwv")]
+position = Vector2(3353, 277)
+
 [node name="PlatformCharacter" parent="Envionment" instance=ExtResource("9_uwbh6")]
 position = Vector2(493, 272)
 
 [node name="PlatformCharacter2" parent="Envionment" instance=ExtResource("9_uwbh6")]
-position = Vector2(1558, 145)
+position = Vector2(1501, 468)
+
+[node name="PlatformCharacter3" parent="Envionment" instance=ExtResource("9_uwbh6")]
+position = Vector2(2388, 538)
+
+[node name="PlatformCharacter4" parent="Envionment" instance=ExtResource("9_uwbh6")]
+position = Vector2(2841, 7)
 
 [node name="Button" parent="Envionment" node_paths=PackedStringArray("player", "platform") instance=ExtResource("8_p5k65")]
 position = Vector2(387, 440)
@@ -96,6 +108,18 @@ position = Vector2(1195, 272)
 script = ExtResource("9_sj07y")
 player = NodePath("../../Player")
 platform = NodePath("../PlatformCharacter2")
+
+[node name="Button3" parent="Envionment" node_paths=PackedStringArray("player", "platform") instance=ExtResource("8_p5k65")]
+position = Vector2(1995, 206)
+script = ExtResource("9_sj07y")
+player = NodePath("../../Player")
+platform = NodePath("../PlatformCharacter3")
+
+[node name="Button4" parent="Envionment" node_paths=PackedStringArray("player", "platform") instance=ExtResource("8_p5k65")]
+position = Vector2(2071, 206)
+script = ExtResource("9_sj07y")
+player = NodePath("../../Player")
+platform = NodePath("../PlatformCharacter4")
 
 [node name="Bounds" type="StaticBody2D" parent="."]
 
