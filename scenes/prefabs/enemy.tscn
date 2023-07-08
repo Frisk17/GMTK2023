@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1us6bxnc5ayf"]
+[gd_scene load_steps=7 format=3 uid="uid://c1us6bxnc5ayf"]
 
 [ext_resource type="Texture2D" uid="uid://wid4wml5bnas" path="res://sprites/enemy-Sheet.png" id="1_rb05f"]
+[ext_resource type="Script" path="res://scenes/scripts/enemy.gd" id="1_tqtdm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_37r0u"]
 atlas = ExtResource("1_rb05f")
@@ -28,7 +29,9 @@ animations = [{
 radius = 32.5576
 
 [node name="Enemy" type="CharacterBody2D"]
-position = Vector2(0, 1)
+script = ExtResource("1_tqtdm")
+acceleration = 200.0
+terminal_velocity = 400.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
@@ -38,3 +41,12 @@ frame_progress = 0.154606
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_lxk2s")
+
+[node name="PathfindingTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+radius = 32.56
+max_speed = 400.0
+
+[connection signal="timeout" from="PathfindingTimer" to="." method="_on_pathfinding_timer_timeout"]

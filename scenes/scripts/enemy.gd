@@ -2,24 +2,33 @@ extends CharacterBody2D
 
 @export var person: CharacterBody2D
 @export var player: Player
-@export var min_distance: float
 @export var acceleration: float
 @export var terminal_velocity: float
 
+@onready var agent: NavigationAgent2D = $NavigationAgent2D
+
+func _ready():
+	call_deferred("actor_setup")
+
+func actor_setup():
+	await get_tree().physics_frame
+	
+	agent.target_position = person.position
+
 func _physics_process(delta):
-	var displacement: Vector2 = person.position - position
-	
-	if displacement.length() <= min_distance:
+	if agent.is_navigation_finished():
 		return
+
+	var target_position: Vector2 = agent.get_next_path_position()
+	var direction: Vector2 = (target_position - position).normalized()
 	
-	var direction: Vector2 = displacement.normalized()
 	if velocity.length() >= terminal_velocity:
-		velocity = direction * terminal_velocity
+		velocity = terminal_velocity * direction
 	else:
 		velocity += acceleration * delta * direction
 
 	move_and_slide()
-	
+
 	for i in range(get_slide_collision_count()):
 		var collision_data: KinematicCollision2D = get_slide_collision(i)
 		if collision_data.get_collider().is_in_group("person"):
@@ -28,3 +37,7 @@ func _physics_process(delta):
 			set_physics_process(false)
 
 	$AnimatedSprite2D.flip_h = velocity.x < 0
+
+
+func _on_pathfinding_timer_timeout():
+	agent.target_position = person.position

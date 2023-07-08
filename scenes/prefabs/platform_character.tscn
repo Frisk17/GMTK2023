@@ -17,3 +17,6 @@ shape = SubResource("RectangleShape2D_7psl3")
 [node name="Camera2D" type="Camera2D" parent="."]
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+vertices = PackedVector2Array(-32, -16, 32, -16, 32, 16, -32, 16)

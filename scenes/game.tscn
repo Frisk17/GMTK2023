@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://crr3wd7441xq8" path="res://scenes/prefabs/platform.tscn" id="3_r47tc"]
 [ext_resource type="PackedScene" uid="uid://csw5c30b82apj" path="res://scenes/prefabs/platform_wide.tscn" id="5_vttwv"]
 [ext_resource type="PackedScene" uid="uid://c1us6bxnc5ayf" path="res://scenes/prefabs/enemy.tscn" id="6_s07k2"]
-[ext_resource type="Script" path="res://scenes/scripts/enemy.gd" id="7_c4d2i"]
 [ext_resource type="PackedScene" uid="uid://dw5px4422gx3n" path="res://scenes/prefabs/button.tscn" id="8_p5k65"]
 [ext_resource type="Script" path="res://scenes/scripts/button.gd" id="9_sj07y"]
 [ext_resource type="PackedScene" uid="uid://d0w8ngs5u881r" path="res://scenes/prefabs/platform_character.tscn" id="9_uwbh6"]
@@ -14,6 +13,11 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_it0df"]
 size = Vector2(49, 733)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_bmf51"]
+vertices = PackedVector2Array(5320, -1729, 5163, 1057, -514, 1012, -493, -1739)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-493, -1739, -514, 1012, 5163, 1057, 5320, -1729)])
 
 [node name="Game" type="Node2D"]
 
@@ -49,11 +53,8 @@ position = Vector2(94, 450)
 
 [node name="Enemy" parent="." node_paths=PackedStringArray("person", "player") instance=ExtResource("6_s07k2")]
 position = Vector2(-269, 536)
-script = ExtResource("7_c4d2i")
 person = NodePath("../Person")
 player = NodePath("../Player")
-acceleration = 200.0
-terminal_velocity = 400.0
 
 [node name="Envionment" type="Node" parent="."]
 
@@ -126,3 +127,6 @@ platform = NodePath("../PlatformCharacter4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds"]
 position = Vector2(-361.5, 344.5)
 shape = SubResource("RectangleShape2D_it0df")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_bmf51")
