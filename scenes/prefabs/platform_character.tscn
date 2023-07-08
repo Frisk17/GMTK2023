@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://d0w8ngs5u881r"]
+[gd_scene load_steps=4 format=3 uid="uid://d0w8ngs5u881r"]
 
 [ext_resource type="Texture2D" uid="uid://dwxg2t06fwp6e" path="res://sprites/platform.png" id="1_yq4tl"]
+[ext_resource type="AudioStream" uid="uid://bweg5tqsda8g1" path="res://sounds/switch.wav" id="2_bx5bw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7psl3"]
 size = Vector2(64, 32)
@@ -21,3 +22,6 @@ drag_vertical_enabled = true
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
 visible = false
 vertices = PackedVector2Array(-32, -16, 32, -16, 32, 16, -32, 16)
+
+[node name="SwitchSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_bx5bw")

@@ -11,5 +11,6 @@ func _process(_delta):
 			if body.is_in_group("person"):
 				$AnimatedSprite2D.play("clicked")
 				clicked = true
+				$PressSound.play()
 				player.change_state(PlatformState.new(platform))
 				return

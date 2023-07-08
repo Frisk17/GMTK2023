@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://t5kcoecyo3wg"]
+[gd_scene load_steps=21 format=3 uid="uid://t5kcoecyo3wg"]
 
 [ext_resource type="PackedScene" uid="uid://dtlkfk2ddt4ew" path="res://scenes/prefabs/player.tscn" id="1_tx6j6"]
 [ext_resource type="PackedScene" uid="uid://cx2e1olc1n7xc" path="res://scenes/prefabs/person.tscn" id="2_cijo2"]
@@ -11,9 +11,11 @@
 [ext_resource type="Script" path="res://scenes/scripts/button.gd" id="9_sj07y"]
 [ext_resource type="PackedScene" uid="uid://d0w8ngs5u881r" path="res://scenes/prefabs/platform_character.tscn" id="9_uwbh6"]
 [ext_resource type="PackedScene" uid="uid://cos0glldtg3ep" path="res://scenes/prefabs/spikes.tscn" id="11_h0om8"]
+[ext_resource type="AudioStream" uid="uid://bweg5tqsda8g1" path="res://sounds/switch.wav" id="11_pbqiq"]
 [ext_resource type="FontFile" uid="uid://ypged7ipi8bs" path="res://fonts/dpcomic.ttf" id="11_wtdht"]
 [ext_resource type="Script" path="res://scenes/scripts/goal.gd" id="13_26t1f"]
 [ext_resource type="Texture2D" uid="uid://cxnt2ilo83c7r" path="res://sprites/flag.png" id="13_hxrt4"]
+[ext_resource type="AudioStream" uid="uid://b8bbi050144mp" path="res://sounds/win.wav" id="16_p0ayl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cdo8w"]
 
@@ -142,6 +144,9 @@ position = Vector2(2283, 372)
 
 [node name="Sprite2D" type="Sprite2D" parent="Envionment/SpikeCharacter"]
 
+[node name="SwitchSound" type="AudioStreamPlayer" parent="Envionment/SpikeCharacter"]
+stream = ExtResource("11_pbqiq")
+
 [node name="Button" parent="Envionment" node_paths=PackedStringArray("player", "platform") instance=ExtResource("8_p5k65")]
 position = Vector2(387, 440)
 script = ExtResource("9_sj07y")
@@ -185,7 +190,7 @@ visible = false
 navigation_polygon = SubResource("NavigationPolygon_bmf51")
 
 [node name="Goal" type="Area2D" parent="."]
-position = Vector2(2623, 340)
+position = Vector2(2622, 341)
 script = ExtResource("13_26t1f")
 
 [node name="Sprite2D" type="Sprite2D" parent="Goal"]
@@ -193,3 +198,6 @@ texture = ExtResource("13_hxrt4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
 shape = SubResource("CircleShape2D_c4p7x")
+
+[node name="WinSound" type="AudioStreamPlayer2D" parent="Goal"]
+stream = ExtResource("16_p0ayl")

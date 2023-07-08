@@ -29,6 +29,7 @@ func kill():
 	person.get_node("AnimatedSprite2D").modulate = Color("D54B36")
 	set_physics_process(false)
 	game_over_label.visible = true
+	$DeathSound.play()
 	dead = true
 
 func change_state(new_state: State):

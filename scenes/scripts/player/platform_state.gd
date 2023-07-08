@@ -19,6 +19,7 @@ func state_exit():
 
 func update(_delta):
 	if Input.is_action_just_pressed("switch"):
+		target.get_node("SwitchSound").play()
 		player.change_state(PersonState.new(player.person))
 
 func physics_update(delta: float, terminal_velocity: float, damping: float):
