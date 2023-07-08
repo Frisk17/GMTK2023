@@ -2,8 +2,8 @@ extends State
 
 class_name PlatformState
 
-var sprite: Sprite2D
 var player: Player
+var sprite: Sprite2D
 
 func _init(_target: CharacterBody2D):
 	super(_target)
@@ -17,7 +17,7 @@ func state_enter():
 func state_exit():
 	sprite.modulate = Color("485A74")
 
-func update(delta):
+func update(_delta):
 	if Input.is_action_just_pressed("switch"):
 		player.change_state(PersonState.new(player.person))
 

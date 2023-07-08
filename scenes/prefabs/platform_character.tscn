@@ -19,4 +19,5 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+visible = false
 vertices = PackedVector2Array(-32, -16, 32, -16, 32, 16, -32, 16)

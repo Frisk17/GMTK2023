@@ -47,6 +47,6 @@ func state_exit():
 	animated_sprite.play("idle")
 	animated_sprite.modulate = Color("485A74")
 
-func update(delta):
+func update(_delta):
 	if Input.is_action_just_pressed("jump") and jump_timer.is_stopped():
 		jump_timer.start()

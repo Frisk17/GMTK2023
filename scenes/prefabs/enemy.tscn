@@ -31,7 +31,7 @@ radius = 32.5576
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_tqtdm")
 acceleration = 200.0
-terminal_velocity = 400.0
+terminal_velocity = 300.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
@@ -43,6 +43,7 @@ frame_progress = 0.154606
 shape = SubResource("CircleShape2D_lxk2s")
 
 [node name="PathfindingTimer" type="Timer" parent="."]
+wait_time = 0.25
 autostart = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

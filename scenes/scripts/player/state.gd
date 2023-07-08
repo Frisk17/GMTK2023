@@ -12,7 +12,7 @@ func state_enter():
 	var camera: Camera2D = target.get_node("Camera2D")
 	camera.make_current()
 
-func update(delta):
+func update(_delta):
 	pass
 
 func physics_update(delta: float, terminal_velocity: float, damping: float):

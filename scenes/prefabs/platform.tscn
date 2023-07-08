@@ -17,4 +17,5 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_6gn2f")
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+visible = false
 vertices = PackedVector2Array(-32, -16, 32, -16, 32, 16, -33, 16)

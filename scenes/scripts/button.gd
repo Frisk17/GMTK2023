@@ -5,7 +5,7 @@ extends Area2D
 
 var clicked: bool = false
 
-func _process(delta):
+func _process(_delta):
 	if not clicked and not get_overlapping_bodies().is_empty():
 		for body in get_overlapping_bodies():
 			if body.is_in_group("person"):

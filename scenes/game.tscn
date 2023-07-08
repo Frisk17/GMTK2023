@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://t5kcoecyo3wg"]
+[gd_scene load_steps=19 format=3 uid="uid://t5kcoecyo3wg"]
 
 [ext_resource type="PackedScene" uid="uid://dtlkfk2ddt4ew" path="res://scenes/prefabs/player.tscn" id="1_tx6j6"]
 [ext_resource type="PackedScene" uid="uid://cx2e1olc1n7xc" path="res://scenes/prefabs/person.tscn" id="2_cijo2"]
+[ext_resource type="Script" path="res://scenes/scripts/timer_label.gd" id="2_wvctx"]
 [ext_resource type="PackedScene" uid="uid://bn15jckipue8c" path="res://scenes/prefabs/ground.tscn" id="3_4tkio"]
 [ext_resource type="PackedScene" uid="uid://crr3wd7441xq8" path="res://scenes/prefabs/platform.tscn" id="3_r47tc"]
 [ext_resource type="PackedScene" uid="uid://csw5c30b82apj" path="res://scenes/prefabs/platform_wide.tscn" id="5_vttwv"]
@@ -9,7 +10,12 @@
 [ext_resource type="PackedScene" uid="uid://dw5px4422gx3n" path="res://scenes/prefabs/button.tscn" id="8_p5k65"]
 [ext_resource type="Script" path="res://scenes/scripts/button.gd" id="9_sj07y"]
 [ext_resource type="PackedScene" uid="uid://d0w8ngs5u881r" path="res://scenes/prefabs/platform_character.tscn" id="9_uwbh6"]
+[ext_resource type="PackedScene" uid="uid://cos0glldtg3ep" path="res://scenes/prefabs/spikes.tscn" id="11_h0om8"]
 [ext_resource type="FontFile" uid="uid://ypged7ipi8bs" path="res://fonts/dpcomic.ttf" id="11_wtdht"]
+[ext_resource type="Script" path="res://scenes/scripts/goal.gd" id="13_26t1f"]
+[ext_resource type="Texture2D" uid="uid://cxnt2ilo83c7r" path="res://sprites/flag.png" id="13_hxrt4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cdo8w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_it0df"]
 size = Vector2(49, 733)
@@ -18,6 +24,9 @@ size = Vector2(49, 733)
 vertices = PackedVector2Array(5320, -1729, 5163, 1057, -514, 1012, -493, -1739)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-493, -1739, -514, 1012, 5163, 1057, 5320, -1729)])
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c4p7x"]
+radius = 16.0312
 
 [node name="Game" type="Node2D"]
 
@@ -40,9 +49,21 @@ size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("11_wtdht")
 theme_override_font_sizes/font_size = 48
 text = "GAME OVER
-PRESS ANY KEY TO RESTART"
+PRESS SPACE TO RESTART"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TimerLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -24.5
+offset_right = 24.5
+offset_bottom = 26.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("11_wtdht")
+theme_override_font_sizes/font_size = 24
+script = ExtResource("2_wvctx")
 
 [node name="Player" parent="." node_paths=PackedStringArray("person", "game_over_label") instance=ExtResource("1_tx6j6")]
 person = NodePath("../Person")
@@ -60,7 +81,7 @@ player = NodePath("../Player")
 
 [node name="Ground" parent="Envionment" instance=ExtResource("3_4tkio")]
 position = Vector2(62, 635)
-scale = Vector2(400, 1)
+scale = Vector2(500, 1)
 
 [node name="Platform" parent="Envionment" instance=ExtResource("3_r47tc")]
 position = Vector2(192, 548)
@@ -84,7 +105,10 @@ position = Vector2(1197, 300)
 position = Vector2(2033, 234)
 
 [node name="PlatformWide5" parent="Envionment" instance=ExtResource("5_vttwv")]
-position = Vector2(3353, 277)
+position = Vector2(2283, 372)
+
+[node name="PlatformWide6" parent="Envionment" instance=ExtResource("5_vttwv")]
+position = Vector2(2573, 372)
 
 [node name="PlatformCharacter" parent="Envionment" instance=ExtResource("9_uwbh6")]
 position = Vector2(493, 272)
@@ -92,11 +116,31 @@ position = Vector2(493, 272)
 [node name="PlatformCharacter2" parent="Envionment" instance=ExtResource("9_uwbh6")]
 position = Vector2(1501, 468)
 
-[node name="PlatformCharacter3" parent="Envionment" instance=ExtResource("9_uwbh6")]
-position = Vector2(2388, 538)
+[node name="SpikeCharacter" type="CharacterBody2D" parent="Envionment"]
 
-[node name="PlatformCharacter4" parent="Envionment" instance=ExtResource("9_uwbh6")]
-position = Vector2(2841, 7)
+[node name="Spikes3" parent="Envionment/SpikeCharacter" node_paths=PackedStringArray("player") instance=ExtResource("11_h0om8")]
+z_index = -10
+position = Vector2(2240, 343)
+player = NodePath("../../../Player")
+
+[node name="Spikes4" parent="Envionment/SpikeCharacter" node_paths=PackedStringArray("player") instance=ExtResource("11_h0om8")]
+z_index = -10
+position = Vector2(2283, 343)
+player = NodePath("../../../Player")
+
+[node name="Spikes5" parent="Envionment/SpikeCharacter" node_paths=PackedStringArray("player") instance=ExtResource("11_h0om8")]
+z_index = -10
+position = Vector2(2326, 343)
+player = NodePath("../../../Player")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Envionment/SpikeCharacter"]
+shape = SubResource("RectangleShape2D_cdo8w")
+disabled = true
+
+[node name="Camera2D" type="Camera2D" parent="Envionment/SpikeCharacter"]
+position = Vector2(2283, 372)
+
+[node name="Sprite2D" type="Sprite2D" parent="Envionment/SpikeCharacter"]
 
 [node name="Button" parent="Envionment" node_paths=PackedStringArray("player", "platform") instance=ExtResource("8_p5k65")]
 position = Vector2(387, 440)
@@ -111,16 +155,20 @@ player = NodePath("../../Player")
 platform = NodePath("../PlatformCharacter2")
 
 [node name="Button3" parent="Envionment" node_paths=PackedStringArray("player", "platform") instance=ExtResource("8_p5k65")]
-position = Vector2(1995, 206)
+position = Vector2(2076, 206)
 script = ExtResource("9_sj07y")
 player = NodePath("../../Player")
-platform = NodePath("../PlatformCharacter3")
+platform = NodePath("../SpikeCharacter")
 
-[node name="Button4" parent="Envionment" node_paths=PackedStringArray("player", "platform") instance=ExtResource("8_p5k65")]
-position = Vector2(2071, 206)
-script = ExtResource("9_sj07y")
+[node name="Spikes" parent="Envionment" node_paths=PackedStringArray("player") instance=ExtResource("11_h0om8")]
+z_index = -10
+position = Vector2(617, 344)
 player = NodePath("../../Player")
-platform = NodePath("../PlatformCharacter4")
+
+[node name="Spikes2" parent="Envionment" node_paths=PackedStringArray("player") instance=ExtResource("11_h0om8")]
+z_index = -10
+position = Vector2(1837, 273)
+player = NodePath("../../Player")
 
 [node name="Bounds" type="StaticBody2D" parent="."]
 
@@ -128,5 +176,20 @@ platform = NodePath("../PlatformCharacter4")
 position = Vector2(-361.5, 344.5)
 shape = SubResource("RectangleShape2D_it0df")
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Bounds"]
+position = Vector2(2783, 344.5)
+shape = SubResource("RectangleShape2D_it0df")
+
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_bmf51")
+
+[node name="Goal" type="Area2D" parent="."]
+position = Vector2(2623, 340)
+script = ExtResource("13_26t1f")
+
+[node name="Sprite2D" type="Sprite2D" parent="Goal"]
+texture = ExtResource("13_hxrt4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
+shape = SubResource("CircleShape2D_c4p7x")

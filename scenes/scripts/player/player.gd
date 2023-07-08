@@ -17,9 +17,7 @@ func _ready():
 func _process(delta):
 	if not dead:
 		state.update(delta)
-
-func _input(event):
-	if dead and event.is_released():
+	elif Input.is_key_pressed(KEY_SPACE):
 		get_tree().reload_current_scene()
 
 func _physics_process(delta):

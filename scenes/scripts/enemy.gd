@@ -16,6 +16,13 @@ func actor_setup():
 	agent.target_position = person.position
 
 func _physics_process(delta):
+	for i in range(get_slide_collision_count()):
+		var collision_data: KinematicCollision2D = get_slide_collision(i)
+		if collision_data.get_collider().is_in_group("person"):
+			player.kill()
+			set_process(false)
+			set_physics_process(false)
+
 	if agent.is_navigation_finished():
 		return
 
@@ -28,13 +35,6 @@ func _physics_process(delta):
 		velocity += acceleration * delta * direction
 
 	move_and_slide()
-
-	for i in range(get_slide_collision_count()):
-		var collision_data: KinematicCollision2D = get_slide_collision(i)
-		if collision_data.get_collider().is_in_group("person"):
-			player.kill()
-			set_process(false)
-			set_physics_process(false)
 
 	$AnimatedSprite2D.flip_h = velocity.x < 0
 
