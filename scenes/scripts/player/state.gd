@@ -1,4 +1,4 @@
-extends Object
+extends Node
 
 class_name State
 
@@ -9,7 +9,8 @@ func _init(_target: CharacterBody2D):
 	target = _target
 
 func state_enter():
-	pass
+	var camera: Camera2D = target.get_node("Camera2D")
+	camera.make_current()
 
 func update(delta):
 	pass

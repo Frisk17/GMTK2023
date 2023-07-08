@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn15jckipue8c"]
+
+[ext_resource type="Texture2D" uid="uid://coarc2usaf5o6" path="res://sprites/ground.png" id="1_1u35q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_425a0"]
+size = Vector2(16, 6)
+
+[node name="Ground" type="StaticBody2D"]
+modulate = Color(0.282353, 0.352941, 0.454902, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_1u35q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_425a0")

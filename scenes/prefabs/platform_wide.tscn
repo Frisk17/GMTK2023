@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://csw5c30b82apj"]
+
+[ext_resource type="Texture2D" uid="uid://k82wh03g523b" path="res://sprites/platform_wide.png" id="1_y0in2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s4h4o"]
+size = Vector2(128, 32)
+
+[node name="PlatformWide" type="StaticBody2D"]
+modulate = Color(0.282353, 0.352941, 0.454902, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_y0in2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_s4h4o")

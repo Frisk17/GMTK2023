@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0w8ngs5u881r"]
+
+[ext_resource type="Texture2D" uid="uid://dwxg2t06fwp6e" path="res://sprites/platform.png" id="1_yq4tl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7psl3"]
+size = Vector2(64, 32)
+
+[node name="PlatformCharacter" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.282353, 0.352941, 0.454902, 1)
+texture = ExtResource("1_yq4tl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7psl3")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+drag_horizontal_enabled = true
+drag_vertical_enabled = true

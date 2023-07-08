@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtlkfk2ddt4ew"]
+
+[ext_resource type="Script" path="res://scenes/scripts/player/player.gd" id="1_ysb75"]
+
+[node name="Player" type="Node"]
+process_priority = 1
+process_physics_priority = 1
+script = ExtResource("1_ysb75")
+terminal_velocity = 500.0
+damping = 10.0

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8tek758s66jo"
-path="res://.godot/imported/person.png-9c3b12be15129bfa9d0dc07e8d138dd8.ctex"
+uid="uid://dpgis4a65sygb"
+path="res://.godot/imported/button-Sheet.png-b5802c633eae1f41b74e9b06643256d3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/person.png"
-dest_files=["res://.godot/imported/person.png-9c3b12be15129bfa9d0dc07e8d138dd8.ctex"]
+source_file="res://sprites/button-Sheet.png"
+dest_files=["res://.godot/imported/button-Sheet.png-b5802c633eae1f41b74e9b06643256d3.ctex"]
 
 [params]
 
