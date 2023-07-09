@@ -46,8 +46,13 @@ shape = SubResource("CircleShape2D_lxk2s")
 wait_time = 0.25
 autostart = true
 
+[node name="EnableTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 radius = 32.56
 max_speed = 400.0
 
 [connection signal="timeout" from="PathfindingTimer" to="." method="_on_pathfinding_timer_timeout"]
+[connection signal="timeout" from="EnableTimer" to="." method="_on_enable_timer_timeout"]

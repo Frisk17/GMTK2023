@@ -13,9 +13,15 @@ func _init(_target: CharacterBody2D):
 func state_enter():
 	super()
 	sprite.modulate = Color("F3D272")
+	if player.switch_tutorial and Player.tutorial:
+		target.get_node("/root/Game/CanvasLayer/SwitchLabel").visible = true
 
 func state_exit():
 	sprite.modulate = Color("485A74")
+	if player.switch_tutorial and Player.tutorial:
+		target.get_node("/root/Game/CanvasLayer/SwitchLabel").visible = false
+		player.switch_tutorial = false
+		player.tutorial = false
 
 func update(_delta):
 	if Input.is_action_just_pressed("switch"):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://t5kcoecyo3wg"]
+[gd_scene load_steps=23 format=3 uid="uid://t5kcoecyo3wg"]
 
 [ext_resource type="PackedScene" uid="uid://dtlkfk2ddt4ew" path="res://scenes/prefabs/player.tscn" id="1_tx6j6"]
 [ext_resource type="PackedScene" uid="uid://cx2e1olc1n7xc" path="res://scenes/prefabs/person.tscn" id="2_cijo2"]
@@ -16,6 +16,8 @@
 [ext_resource type="Script" path="res://scenes/scripts/goal.gd" id="13_26t1f"]
 [ext_resource type="Texture2D" uid="uid://cxnt2ilo83c7r" path="res://sprites/flag.png" id="13_hxrt4"]
 [ext_resource type="AudioStream" uid="uid://b8bbi050144mp" path="res://sounds/win.wav" id="16_p0ayl"]
+[ext_resource type="Texture2D" uid="uid://cdtq6u2phndcn" path="res://sprites/arrow.png" id="17_f4oqb"]
+[ext_resource type="Script" path="res://scenes/scripts/button_tutorial.gd" id="18_chb04"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cdo8w"]
 
@@ -66,6 +68,19 @@ grow_horizontal = 2
 theme_override_fonts/font = ExtResource("11_wtdht")
 theme_override_font_sizes/font_size = 24
 script = ExtResource("2_wvctx")
+
+[node name="SwitchLabel" type="Label" parent="CanvasLayer"]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -400.0
+offset_right = -188.0
+offset_bottom = 26.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("11_wtdht")
+theme_override_font_sizes/font_size = 24
+text = "Press Q to switch back"
 
 [node name="Player" parent="." node_paths=PackedStringArray("person", "game_over_label") instance=ExtResource("1_tx6j6")]
 person = NodePath("../Person")
@@ -201,3 +216,11 @@ shape = SubResource("CircleShape2D_c4p7x")
 
 [node name="WinSound" type="AudioStreamPlayer2D" parent="Goal"]
 stream = ExtResource("16_p0ayl")
+
+[node name="ButtonTutorial" type="Sprite2D" parent="." node_paths=PackedStringArray("person")]
+position = Vector2(387, 414)
+rotation = 1.5708
+texture = ExtResource("17_f4oqb")
+script = ExtResource("18_chb04")
+person = NodePath("../Person")
+distance_to_deactivate = 100.0

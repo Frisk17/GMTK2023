@@ -1,7 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://cx2e1olc1n7xc"]
+[gd_scene load_steps=17 format=3 uid="uid://cx2e1olc1n7xc"]
 
 [ext_resource type="Script" path="res://scenes/scripts/player/person.gd" id="1_u3kgs"]
 [ext_resource type="Texture2D" uid="uid://b6j433xj851tm" path="res://sprites/person-Sheet.png" id="2_gxxv3"]
+[ext_resource type="Texture2D" uid="uid://cdtq6u2phndcn" path="res://sprites/arrow.png" id="3_gnkvm"]
+[ext_resource type="FontFile" uid="uid://ypged7ipi8bs" path="res://fonts/dpcomic.ttf" id="4_iuxtt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2ej7c"]
 atlas = ExtResource("2_gxxv3")
@@ -97,6 +99,7 @@ height = 22.0
 
 [node name="Person" type="CharacterBody2D"]
 scale = Vector2(2, 2)
+floor_stop_on_slope = false
 script = ExtResource("1_u3kgs")
 jump_height = 120.0
 min_animation_velocity = 10.0
@@ -114,8 +117,89 @@ shape = SubResource("CapsuleShape2D_ttrdx")
 wait_time = 0.167
 one_shot = true
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(0, -150)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 drag_top_margin = 0.5
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HorizontalTutorial" type="HBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 32
+
+[node name="LeftArrow" type="TextureRect" parent="Control/HorizontalTutorial"]
+layout_mode = 2
+texture = ExtResource("3_gnkvm")
+flip_h = true
+
+[node name="Label" type="Label" parent="Control/HorizontalTutorial/LeftArrow"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 3.5
+offset_right = 39.0
+offset_bottom = 29.5
+theme_override_fonts/font = ExtResource("4_iuxtt")
+text = "A"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RightArrow" type="TextureRect" parent="Control/HorizontalTutorial"]
+layout_mode = 2
+texture = ExtResource("3_gnkvm")
+
+[node name="Label" type="Label" parent="Control/HorizontalTutorial/RightArrow"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 0.5
+offset_right = 32.0
+offset_bottom = 32.5
+theme_override_fonts/font = ExtResource("4_iuxtt")
+text = "D"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="JumpTutorial" type="TextureRect" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -13.5
+offset_right = 20.0
+offset_bottom = 26.5
+grow_horizontal = 2
+grow_vertical = 0
+rotation = -1.5708
+texture = ExtResource("3_gnkvm")
+
+[node name="Label" type="Label" parent="Control/JumpTutorial"]
+layout_mode = 0
+offset_left = 24.5
+offset_top = 1.0
+offset_right = 64.5
+offset_bottom = 27.0
+rotation = 1.5708
+theme_override_fonts/font = ExtResource("4_iuxtt")
+text = "W"
+horizontal_alignment = 1
+vertical_alignment = 1

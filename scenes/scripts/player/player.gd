@@ -2,6 +2,8 @@ extends Node
 
 class_name Player
 
+static var tutorial: bool = true
+
 @export var person: CharacterBody2D
 @export var game_over_label: Label
 @export var terminal_velocity: float
@@ -10,6 +12,7 @@ class_name Player
 @onready var state: State = PersonState.new(person)
 
 var dead: bool = false
+var switch_tutorial: bool = true
 
 func _ready():
 	state.state_enter()

@@ -7,6 +7,8 @@ extends CharacterBody2D
 
 @onready var agent: NavigationAgent2D = $NavigationAgent2D
 
+var enabled = false
+
 func _ready():
 	call_deferred("actor_setup")
 
@@ -16,6 +18,9 @@ func actor_setup():
 	agent.target_position = person.position
 
 func _physics_process(delta):
+	if not enabled:
+		return
+	
 	for i in range(get_slide_collision_count()):
 		var collision_data: KinematicCollision2D = get_slide_collision(i)
 		if collision_data.get_collider().is_in_group("person"):
@@ -41,3 +46,7 @@ func _physics_process(delta):
 
 func _on_pathfinding_timer_timeout():
 	agent.target_position = person.position
+
+
+func _on_enable_timer_timeout():
+	enabled = true

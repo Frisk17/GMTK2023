@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dbyljppg6yts5"]
+[gd_scene load_steps=4 format=3 uid="uid://dbyljppg6yts5"]
 
 [ext_resource type="Script" path="res://scenes/scripts/buttons.gd" id="1_p3lg5"]
 [ext_resource type="FontFile" uid="uid://ypged7ipi8bs" path="res://fonts/dpcomic.ttf" id="1_tosee"]
+[ext_resource type="Texture2D" uid="uid://bhytj1xoi3jc6" path="res://icon.png" id="2_gqgkd"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -22,6 +23,11 @@ offset_bottom = 69.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_p3lg5")
+
+[node name="TextureRect" type="TextureRect" parent="Buttons"]
+layout_mode = 2
+texture = ExtResource("2_gqgkd")
+stretch_mode = 5
 
 [node name="PlayButton" type="Button" parent="Buttons"]
 layout_mode = 2
