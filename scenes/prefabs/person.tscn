@@ -93,9 +93,8 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ttrdx"]
-radius = 5.0
-height = 22.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dna7g"]
+size = Vector2(10, 21)
 
 [node name="Person" type="CharacterBody2D"]
 scale = Vector2(2, 2)
@@ -107,11 +106,11 @@ min_animation_velocity = 10.0
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 10
 sprite_frames = SubResource("SpriteFrames_fdkqm")
-animation = &"running"
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 0)
-shape = SubResource("CapsuleShape2D_ttrdx")
+position = Vector2(-1, 0.5)
+shape = SubResource("RectangleShape2D_dna7g")
 
 [node name="JumpTimer" type="Timer" parent="."]
 wait_time = 0.167
